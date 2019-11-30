@@ -93,5 +93,5 @@ clf.fit(data_train[features], data_train['is_play'])
 model.fit(data_train_play[features], data_train_play['playtime_forever'])
 
 
-df_test_dy['playtime_forever'] = model.predict(df_test_dy[features]) 
+df_test_dy['playtime_forever'] = model.predict(df_test_dy[features]) * clf.predict_proba(df_test_dy[features])[:,1] 
 df_test_dy[['id','playtime_forever']].to_csv('submission_1129.csv',index=False)
